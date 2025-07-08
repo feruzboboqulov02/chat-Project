@@ -8,112 +8,137 @@
   <title>Chatting App</title>
   <style>
     body {
-      background-color: #4B0082;
+      background-color: #9b59b6; /* lighter purple */
       color: white;
       font-family: 'Roboto', sans-serif;
       padding: 20px;
     }
+
     .header-container {
-      width: 100%;
-      max-width: 1200px;
+      width: 75%;
       margin: 0 auto;
-      padding-bottom: 20px;
     }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 15px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+    }
+
     .message-area {
       height: 300px;
       overflow-y: auto;
-      border: 1px solid #ccc;
-      padding: 10px;
-      background-color: #fff;
-      color: black;
-      border-radius: 10px;
+      border: none;
+      padding: 20px;
+      color: white;
     }
+
+    .form-control, textarea {
+      background: rgba(255, 255, 255, 0.1) !important;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white !important;
+      backdrop-filter: blur(6px);
+    }
+
+    .form-control::placeholder,
+    textarea::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
     .submit-button {
       background: linear-gradient(90deg, #FF6F61, #D5006D);
       color: white;
       border: none;
       border-radius: 25px;
-      padding: 10px 20px;
-      transition: background 0.3s;
+      padding: 6px 18px;
+      font-size: 14px;
+      margin-top: 10px;
+      display: inline-block;
     }
+
     .submit-button:hover {
       background: linear-gradient(90deg, #D5006D, #FF6F61);
       cursor: pointer;
     }
-    .input-group {
-      width: 50%;
-      padding-right: 10px;
-    }
-    .message-area-container {
-      width: 50%;
-      padding-left: 10px;
-    }
-    .container {
+
+    .message-row {
       display: flex;
       justify-content: space-between;
+      gap: 30px; /* 💡 adds space between the two cards */
       padding: 20px;
     }
-    h2 {
+
+    h2, h3 {
       margin-bottom: 10px;
     }
-    h3 {
-      margin-bottom: 10px;
-    }
+
     .heading-container {
       display: flex;
       align-items: center;
       justify-content: flex-start;
       width: 100%;
     }
+
     .username-input {
       margin-bottom: 20px;
       border-radius: 10px;
     }
+
     .username-container {
       display: flex;
       flex-direction: column;
       align-items: center;
       margin-bottom: 40px;
     }
+
+    nav a {
+      color: white !important;
+      margin-right: 15px;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
   <div class="header-container d-flex justify-content-between align-items-center pb-3 mb-4 border-bottom pt-3">
     <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none">
-      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" class="me-2" viewBox="0 0 118 94" role="img">
-        <title>Bootstrap</title>
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z" fill="currentColor"></path>
-      </svg>
-      <span class="fs-4">Pricing example</span>
+      <span class="fs-4 text-white">Chatting App</span>
     </a>
     <nav class="d-inline-flex mt-2 mt-md-0">
-      <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Features</a>
-      <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Enterprise</a>
-      <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Support</a>
-      <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Pricing</a>
-      <div id="auth-buttons"></div>
+      <a href="#">Features</a>
+      <a href="#">Enterprise</a>
+      <a href="#">Support</a>
+      <a href="#">Pricing</a>
+      <div id="auth-buttons" class="ms-3"></div>
     </nav>
   </div>
 
-  <div class="username-container" id="usernameContainer">
+  <div class="username-container glass-card" id="usernameContainer" style="width: 60%; margin: auto;">
     <h3>Enter your username:</h3>
-    <input type="text" id="usernameInput" class="form-control username-input" placeholder="Type your username here" style="width: 50%;" />
-    <button class="btn submit-button" id="submitUsername">Submit Username</button>
+    <input type="text" id="usernameInput" class="form-control username-input" placeholder="Type your username here" />
+    <button class="btn submit-button mt-2" id="submitUsername">Submit</button>
   </div>
 
-  <div class="container mt-4">
+  <div class="container mt-5">
     <div class="heading-container">
       <h2>Message:</h2>
-      <h2 style="margin-left: 100px;">All messages:</h2>
+      <h2 style="margin-left: 520px;">All messages:</h2>
     </div>
   </div>
 
-  <div class="container">
-    <div class="input-group mb-3">
-      <textarea id="messageInput" class="form-control" rows="3" placeholder="Type your message here..."></textarea>
+  <div class="message-row">
+    <div class="glass-card" style="flex: 1;">
+      <textarea id="messageInput" class="form-control" rows="4" placeholder="Type your message here..."></textarea>
       <button class="btn submit-button" id="submitMessage">Submit</button>
     </div>
-    <div class="message-area-container">
+    <div class="glass-card" style="flex: 1;">
       <div class="message-area" id="messageArea">
         <!-- Messages will be displayed here -->
       </div>
@@ -124,9 +149,9 @@
     const authButtonsDiv = document.getElementById('auth-buttons');
     const isAuthenticated = false;
     if (isAuthenticated) {
-      authButtonsDiv.innerHTML = `<a class="btn btn-outline-danger" href="#">Sign Out</a>`;
+      authButtonsDiv.innerHTML = `<a class="btn btn-outline-danger btn-sm" href="#">Sign Out</a>`;
     } else {
-      authButtonsDiv.innerHTML = `<a class="btn btn-primary me-2" href="#">Sign In</a>`;
+      authButtonsDiv.innerHTML = `<a class="btn btn-primary btn-sm" href="#">Sign In</a>`;
     }
 
     const usernameInput = document.getElementById('usernameInput');
@@ -139,7 +164,7 @@
     let savedUsername = localStorage.getItem('chat-username') || '';
 
     if (savedUsername) {
-      usernameContainer.style.display = 'none'; // Hide input if already saved
+      usernameContainer.style.display = 'none';
     }
 
     submitUsernameButton.addEventListener('click', () => {
@@ -148,7 +173,7 @@
         localStorage.setItem('chat-username', username);
         savedUsername = username;
         usernameInput.value = '';
-        usernameContainer.style.display = 'none'; // Hide after submission
+        usernameContainer.style.display = 'none';
       }
     });
 
